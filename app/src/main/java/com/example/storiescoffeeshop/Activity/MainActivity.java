@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.example.storiescoffeeshop.Adapter.CategoryAdapter;
 import com.example.storiescoffeeshop.Domain.categories;
+import com.example.storiescoffeeshop.R;
 import com.example.storiescoffeeshop.databinding.ActivityMainBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,8 +30,12 @@ public class MainActivity extends BaseActivity {
 
 
         initCategory();
+        setVariable();
     }
 
+    private void setVariable() {
+        binding.bottomNavbar.setItemSelected(R.id.home, true);
+    }
 
 
     private void initCategory() {

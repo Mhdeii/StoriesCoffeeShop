@@ -99,7 +99,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/round_back_home_100"
+                android:background="@drawable/grey_background"
                 android:drawableStart="@drawable/searchh"
                 android:drawablePadding="8dp"
                 android:ems="10"
@@ -110,13 +110,12 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/categoryView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:clipToPadding="false"
                     android:paddingStart="4dp"
                     android:paddingEnd="4dp"
@@ -134,13 +133,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/categoryView"
                     app:layout_constraintTop_toTopOf="@+id/categoryView" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
 
 
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
-        android:id="@+id/chipNavigationBar"
+        android:id="@+id/bottomNavbar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/dessert_sand"

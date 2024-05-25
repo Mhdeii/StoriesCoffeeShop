@@ -25,21 +25,20 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
         this.items = items;
     }
 
-
     @NonNull
     @Override
     public CategoryAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_category,parent,false);
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_category, parent, false);
         return new viewholder(inflate);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.viewholder holder, int position) {
         holder.titleView.setText(items.get(position).getName());
-        int drawableResourceId = context.getResources().getIdentifier(items.get(position).getImagePath(),"drawable",holder.itemView.getContext().getPackageName());
+        String imageUrl = items.get(position).getImagePath(); // Assume this is the URL of the image
         Glide.with(context)
-                .load(drawableResourceId)
+                .load(imageUrl)
                 .into(holder.pic);
     }
 
@@ -48,12 +47,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
         return items.size();
     }
 
-
-
     public class viewholder extends RecyclerView.ViewHolder {
         TextView titleView;
         ImageView pic;
-        public viewholder(@NonNull View itemView){
+        public viewholder(@NonNull View itemView) {
             super(itemView);
             titleView = itemView.findViewById(R.id.categoryNameTxt);
             pic = itemView.findViewById(R.id.imgCategory);
