@@ -74,6 +74,8 @@
                     android:id="@+id/viewpager2"
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -103,7 +105,7 @@
                 android:drawableStart="@drawable/searchh"
                 android:drawablePadding="8dp"
                 android:ems="10"
-                android:hint="What do you want to drink?"
+                android:hint="@string/what_do_you_want_to_choose"
                 android:inputType="text"
                 android:textColor="@color/ocean_green"
                 android:textColorHint="@color/ocean_green" />
@@ -145,7 +147,7 @@
         android:layout_height="70dp"
         android:background="@color/dessert_sand"
         android:padding="4dp"
-        app:cnb_iconSize="20dp"
+        app:cnb_iconSize="25dp"
         app:cnb_menuResource="@menu/bottom_navbar"
         app:cnb_orientationMode="horizontal"
         app:cnb_radius="10dp"

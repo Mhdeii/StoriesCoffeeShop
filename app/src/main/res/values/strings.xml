@@ -26,4 +26,6 @@
     <string name="order_summary">Order Summary</string>
     <string name="apply_coupon">Apply Coupon</string>
     <string name="enter_your_code">Enter Your Code</string>
+    <string name="what_do_you_want_to_choose">What do you want to choose?</string>
+    <string name="check_out">Check Out</string>
 </resources>
