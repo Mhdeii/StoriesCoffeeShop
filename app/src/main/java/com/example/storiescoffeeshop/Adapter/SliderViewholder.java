@@ -13,6 +13,7 @@ public class SliderViewholder extends RecyclerView.Adapter<SliderViewholder.Slid
         return null;
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull SliderViewholder.SliderViewholder holder, int position) {
 
