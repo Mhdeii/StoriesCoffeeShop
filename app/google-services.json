@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "959045741287",
+    "firebase_url": "https://storiescoffee-a4b0a-default-rtdb.firebaseio.com",
+    "project_id": "storiescoffee-a4b0a",
+    "storage_bucket": "storiescoffee-a4b0a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959045741287:android:bc109c16872705e9521042",
+        "android_client_info": {
+          "package_name": "com.example.storiescoffee"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyglXhCsM8rd65qVlV3BUZZQR45ZHY0jM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959045741287:android:cd86287c97ec718a521042",
+        "android_client_info": {
+          "package_name": "com.example.storiescoffeeshop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyglXhCsM8rd65qVlV3BUZZQR45ZHY0jM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

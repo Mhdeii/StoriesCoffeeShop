@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Stories</string>
+    <string name="welcome_to_our_coffee_shop">Welcome To Our Coffee Shop</string>
+    <string name="login">Login</string>
+    <string name="Signup">  Signup</string>
+    <string name="email_address">Email address</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="you_are_not_user">You are not user? </string>
+    <string name="title_activity_navbar_initializer">navbarInitializer</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="cart">Cart</string>
+    <string name="favorites">Favorites</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="total_tax">Total Tax</string>
+    <string name="delivery">Delivery</string>
+    <string name="dollar">$.</string>
+    <string name="total">Total</string>
+    <string name="place_order">Place Order</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="apply_coupon">Apply Coupon</string>
+    <string name="enter_your_code">Enter Your Code</string>
+</resources>
