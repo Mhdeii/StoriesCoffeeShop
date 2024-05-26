@@ -16,7 +16,7 @@
             android:name=".Activity.CartActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.ListCoffeeActivity"
+            android:name=".Activity.ItemListActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.DetailActivity"

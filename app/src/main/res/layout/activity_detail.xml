@@ -64,11 +64,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="0dp"
-                    android:layout_height="312dp"
+                    android:id="@+id/itemPic"
+                    android:layout_width="380dp"
+                    android:layout_height="380dp"
                     android:layout_marginTop="16dp"
-                    android:scaleType="centerCrop"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:scaleType="centerInside"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/backBtn"
@@ -200,7 +202,7 @@
                     app:layout_constraintTop_toTopOf="@+id/linearLayout">
 
                     <TextView
-                        android:id="@+id/textView22"
+                        android:id="@+id/minusBtn"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_gravity="center"
@@ -211,7 +213,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView23"
+                        android:id="@+id/numTxt"
                         android:layout_width="20dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -224,7 +226,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView24"
+                        android:id="@+id/plusBtn"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_gravity="center"
@@ -253,7 +255,7 @@
             android:layout_marginEnd="8dp"
             android:background="@drawable/red_bg"
             style="@android:style/Widget.Button"
-            android:id="@+id/button3"
+            android:id="@+id/addToBtn"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:text="Add to Cart"
@@ -276,7 +278,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/button3" />
+            app:layout_constraintTop_toTopOf="@+id/addToBtn" />
 
         <TextView
             android:id="@+id/totalTxt"
@@ -286,7 +288,7 @@
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/button3"
+            app:layout_constraintBottom_toBottomOf="@+id/addToBtn"
             app:layout_constraintStart_toStartOf="@+id/textView4"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
     </androidx.constraintlayout.widget.ConstraintLayout>

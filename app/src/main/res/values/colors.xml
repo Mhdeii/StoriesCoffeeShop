@@ -5,9 +5,10 @@
     <color name="red">#FF0000</color>
     <color name="ocean_green">#48A878</color>
     <color name="dessert_sand">#EECCAC</color>
-
+    <color name="gold">#d4af37 </color>
     <color name="ocean_green_20">#3348A878</color>
+    <color name="green">#17452E</color>
     <color name="dessert_sand_20">#33EECCAC</color>
-
+    <color name="light_dessert">#DFEDEAE6</color>
     <color name="grey">#F5F5F5</color>
 </resources>

@@ -19,17 +19,17 @@
         <ImageView
             android:id="@+id/imgCategory"
             android:layout_width="94dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="12dp"
+            android:layout_height="80dp"
             android:layout_gravity="center"
-            android:scaleType="center"
+            android:layout_marginTop="5dp"
+            android:scaleType="fitCenter"
             app:srcCompat="@drawable/avatar" />
 
         <TextView
             android:id="@+id/categoryNameTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="2dp"
             android:text="Title"
             android:textAlignment="center"
             android:textColor="@color/ocean_green"
