@@ -47,4 +47,5 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.github.ismaeldivita:chip-navigation-bar:1.4.0")
     implementation("com.github.bumptech.glide:glide:4.12.0")
+
 }
