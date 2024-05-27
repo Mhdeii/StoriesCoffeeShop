@@ -17,6 +17,9 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Layout must be set before finding views
+        setContentView(R.layout.activity_base); // Make sure this layout contains bottomNavbar
+
         database = FirebaseDatabase.getInstance();
 
         Window w = getWindow();

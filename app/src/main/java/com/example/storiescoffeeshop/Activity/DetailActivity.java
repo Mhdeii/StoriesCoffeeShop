@@ -3,14 +3,15 @@ package com.example.storiescoffeeshop.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
+
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.storiescoffeeshop.Domain.Items;
+import com.example.storiescoffeeshop.Helper.ManagementFavorite;
 import com.example.storiescoffeeshop.Helper.ManagmentCart;
-import com.example.storiescoffeeshop.R;
+
 import com.example.storiescoffeeshop.databinding.ActivityDetailBinding;
 
 public class DetailActivity extends BaseActivity {
@@ -18,6 +19,7 @@ public class DetailActivity extends BaseActivity {
     private Items object;
     private int num = 1;
     private ManagmentCart managmentCart;
+    private ManagementFavorite managmentFavorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class DetailActivity extends BaseActivity {
 
     private void setVariable() {
         managmentCart = new ManagmentCart(this);
+        managmentFavorite = new ManagementFavorite(this);
 
         binding.backBtn.setOnClickListener(v -> finish());
 
@@ -59,9 +62,14 @@ public class DetailActivity extends BaseActivity {
                 binding.totalTxt.setText("$" + (num * object.getPrice()));
             }
         });
-        binding.addToBtn.setOnClickListener(v ->{
+
+        binding.addToBtn.setOnClickListener(v -> {
             object.setNumberInCart(num);
             managmentCart.insertItem(object);
+        });
+
+        binding.favBtn.setOnClickListener(v -> {
+            managmentFavorite.insertItem(object);
         });
     }
 

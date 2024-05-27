@@ -29,6 +29,7 @@ public class CartActivity extends BaseActivity {
         setContentView(binding.getRoot());
 
         managmentCart = new ManagmentCart(this);
+
         bottomNavbar = findViewById(R.id.bottomNavbar);
         if (bottomNavbar != null) {
             bottomNavbar.setItemSelected(R.id.cart, true);
@@ -43,10 +44,12 @@ public class CartActivity extends BaseActivity {
     private void initCartList() {
         if (managmentCart.getListCart().isEmpty()) {
             binding.emptyCart.setVisibility(View.VISIBLE);
-            binding.scrollView6.setVisibility(View.GONE);
+            binding.linearLayout3.setVisibility(View.GONE);
+            binding.checkOutBtn.setVisibility(View.GONE);
         } else {
             binding.emptyCart.setVisibility(View.GONE);
-            binding.scrollView6.setVisibility(View.VISIBLE);
+            binding.linearLayout3.setVisibility(View.VISIBLE);
+            binding.checkOutBtn.setVisibility(View.VISIBLE);
 
             binding.cartView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
             binding.cartView.setAdapter(new CartAdapter(managmentCart.getListCart(), managmentCart, new ChangeNumberItemsListener() {
@@ -75,7 +78,7 @@ public class CartActivity extends BaseActivity {
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                navigateToMainActivity();
             }
         });
 
@@ -112,6 +115,18 @@ public class CartActivity extends BaseActivity {
         });
 
         dialog.show();
+    }
+
+    private void navigateToMainActivity() {
+        Intent intent = new Intent(CartActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        navigateToMainActivity();
     }
 
 }
