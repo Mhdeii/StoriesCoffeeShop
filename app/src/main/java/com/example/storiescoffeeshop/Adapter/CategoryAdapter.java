@@ -20,8 +20,8 @@ import java.util.ArrayList;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewholder> {
 
-    ArrayList<categories> items;
-    Context context;
+    private ArrayList<categories> items;
+    private Context context;
 
     public CategoryAdapter(ArrayList<categories> items) {
         this.items = items;
@@ -31,22 +31,23 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
     @Override
     public CategoryAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_category, parent, false);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.viewholder_category, parent, false);
         return new viewholder(inflate);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.viewholder holder, int position) {
-        holder.titleView.setText(items.get(position).getName());
+        categories category = items.get(position);
+        holder.titleView.setText(category.getName());
 
         Glide.with(context)
-                .load(items.get(position).getImagePath())
+                .load(category.getImagePath())
                 .into(holder.pic);
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, ItemListActivity.class);
-            intent.putExtra("CategoryId", items.get(position).getId());
-            intent.putExtra("CategoryName", items.get(position).getName());
+            intent.putExtra("CategoryId", category.getId());
+            intent.putExtra("CategoryName", category.getName());
             context.startActivity(intent);
         });
     }
@@ -56,7 +57,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
         return items.size();
     }
 
-    public class viewholder extends RecyclerView.ViewHolder {
+    public void updateList(ArrayList<categories> newList) {
+        items = newList;
+        notifyDataSetChanged();
+    }
+
+    public static class viewholder extends RecyclerView.ViewHolder {
         TextView titleView;
         ImageView pic;
         public viewholder(@NonNull View itemView) {

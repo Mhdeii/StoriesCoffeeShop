@@ -7,6 +7,48 @@
     tools:context=".Activity.FavoriteActivity">
 
     <LinearLayout
+        android:id="@+id/emptyFav"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomNavbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/emptyFavIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/cart_empty_icon_desc"
+            android:src="@drawable/infoempty" />
+
+        <TextView
+            android:id="@+id/emptyFavText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textStyle="bold"
+            android:text="You dont have any favorite items!"
+            android:textColor="@color/ocean_green"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/emptyFavSubText"
+            android:layout_width="wrap_content"
+            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:text="Please go to the home and choose your favorite items"
+            android:textColor="@color/ocean_green"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,7 +89,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.555" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </LinearLayout>
 
     <ScrollView
@@ -91,5 +132,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

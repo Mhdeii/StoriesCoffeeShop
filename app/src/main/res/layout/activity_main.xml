@@ -100,7 +100,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <EditText
-                android:id="@+id/editTextText"
+                android:id="@+id/searchBar"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
@@ -115,14 +115,15 @@
                 android:textColor="@color/ocean_green"
                 android:textColorHint="@color/ocean_green" />
 
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/categoryView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="412dp"
+                    android:layout_height="465dp"
                     android:clipToPadding="false"
                     android:paddingStart="4dp"
                     android:paddingEnd="4dp"

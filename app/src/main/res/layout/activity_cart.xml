@@ -28,7 +28,8 @@
             android:id="@+id/emptyCartText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your Cart is Empty"
+            android:textStyle="bold"
+            android:text="Your Cart is Empty!"
             android:textSize="18sp"
             android:textColor="@color/ocean_green"
             android:layout_marginBottom="8dp"/>
@@ -37,7 +38,9 @@
             android:id="@+id/emptyCartSubText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Please go to the home and choose what you want to drink"
+            android:textStyle="italic"
+            android:textAlignment="center"
+            android:text="Please go to the home and choose what item you want"
             android:textSize="16sp"
             android:textColor="@color/ocean_green"/>
 

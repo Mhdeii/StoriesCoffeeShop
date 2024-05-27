@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.example.storiescoffeeshop.Adapter.FavoriteAdapter;
@@ -22,6 +23,7 @@ public class FavoriteActivity extends BaseActivity {
     private ProgressBar progressBar;
     private FavoriteAdapter favoriteAdapter;
     private ManagementFavorite managementFavorite;
+    private LinearLayout emptyFav, linearLayout2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,8 @@ public class FavoriteActivity extends BaseActivity {
         // Initialize views
         recyclerView = findViewById(R.id.itemListView);
         progressBar = findViewById(R.id.progressBar);
-        bottomNavbar = findViewById(R.id.bottomNavbar);
+        emptyFav = findViewById(R.id.emptyFav);
+        linearLayout2 = findViewById(R.id.linearLayout2);
 
         // Set back button click listener
         ImageView backBtn = findViewById(R.id.backBtn);
@@ -64,9 +67,18 @@ public class FavoriteActivity extends BaseActivity {
         // Hide progress bar after loading
         progressBar.setVisibility(View.GONE);
 
-        // Initialize adapter and set it to RecyclerView
-        favoriteAdapter = new FavoriteAdapter(favoriteItems, managementFavorite, this);
-        recyclerView.setAdapter(favoriteAdapter);
+        // Check if favorites list is empty
+        if (favoriteItems.isEmpty()) {
+            emptyFav.setVisibility(View.VISIBLE);
+            linearLayout2.setVisibility(View.GONE);
+        } else {
+            emptyFav.setVisibility(View.GONE);
+            linearLayout2.setVisibility(View.VISIBLE);
+
+            // Initialize adapter and set it to RecyclerView
+            favoriteAdapter = new FavoriteAdapter(favoriteItems, managementFavorite, this);
+            recyclerView.setAdapter(favoriteAdapter);
+        }
     }
 
     private void navigateToMainActivity() {

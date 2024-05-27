@@ -13,7 +13,10 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -31,6 +34,7 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
@@ -42,6 +46,8 @@ public class MainActivity extends BaseActivity {
     };
 
     ActivityMainBinding binding;
+    private CategoryAdapter categoryAdapter;
+    private ArrayList<categories> categoryList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +72,24 @@ public class MainActivity extends BaseActivity {
             registerReceiver(profilePictureDeletedReceiver, filter, Context.RECEIVER_NOT_EXPORTED);
         }
 
+        // Initialize search bar
+        EditText searchBar = findViewById(R.id.searchBar);
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // Do nothing
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterCategories(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Do nothing
+            }
+        });
     }
 
     @Override
@@ -135,18 +159,19 @@ public class MainActivity extends BaseActivity {
     private void initCategory() {
         DatabaseReference myRef = database.getReference("categories");
         binding.progressBarCategory.setVisibility(View.VISIBLE);
-        ArrayList<categories> list = new ArrayList<>();
+        categoryList = new ArrayList<>();
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     for (DataSnapshot issue : snapshot.getChildren()) {
-                        list.add(issue.getValue(categories.class));
+                        categoryList.add(issue.getValue(categories.class));
                     }
-                    if (list.size() > 0) {
+                    if (categoryList.size() > 0) {
                         binding.categoryView.setLayoutManager(new GridLayoutManager(MainActivity.this, 3));
-                        binding.categoryView.setAdapter(new CategoryAdapter(list));
+                        categoryAdapter = new CategoryAdapter(categoryList);
+                        binding.categoryView.setAdapter(categoryAdapter);
                     }
                     binding.progressBarCategory.setVisibility(View.GONE);
                 }
@@ -157,5 +182,16 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+    }
+
+    private void filterCategories(String query) {
+        ArrayList<categories> filteredList = new ArrayList<>();
+        for (categories category : categoryList) {
+            if (category.getName().toLowerCase().contains(query.toLowerCase())) {
+                filteredList.add(category);
+            }
+        }
+
+        categoryAdapter.updateList(filteredList);
     }
 }
