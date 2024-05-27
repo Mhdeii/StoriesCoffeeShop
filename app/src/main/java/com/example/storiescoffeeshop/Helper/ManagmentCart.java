@@ -3,11 +3,9 @@ package com.example.storiescoffeeshop.Helper;
 import android.content.Context;
 import android.widget.Toast;
 
-
 import com.example.storiescoffeeshop.Domain.Items;
 
 import java.util.ArrayList;
-
 
 public class ManagmentCart {
     private Context context;
@@ -15,7 +13,7 @@ public class ManagmentCart {
 
     public ManagmentCart(Context context) {
         this.context = context;
-        this.tinyDB=new TinyDB(context);
+        this.tinyDB = new TinyDB(context);
     }
 
     public void insertItem(Items item) {
@@ -29,12 +27,12 @@ public class ManagmentCart {
                 break;
             }
         }
-        if(existAlready){
+        if (existAlready) {
             listpop.get(n).setNumberInCart(item.getNumberInCart());
-        }else{
+        } else {
             listpop.add(item);
         }
-        tinyDB.putListObject("CartList",listpop);
+        tinyDB.putListObject("CartList", listpop);
         Toast.makeText(context, "Added to your Cart", Toast.LENGTH_SHORT).show();
     }
 
@@ -42,31 +40,41 @@ public class ManagmentCart {
         return tinyDB.getListObject("CartList");
     }
 
-    public Double getTotalFee(){
-        ArrayList<Items> listItem=getListCart();
-        double fee=0;
+    public Double getTotalFee() {
+        ArrayList<Items> listItem = getListCart();
+        double fee = 0;
         for (int i = 0; i < listItem.size(); i++) {
-            fee=fee+(listItem.get(i).getPrice()*listItem.get(i).getNumberInCart());
+            fee = fee + (listItem.get(i).getPrice() * listItem.get(i).getNumberInCart());
         }
         return fee;
     }
-    public void minusNumberItem(ArrayList<Items> listItem,int position,ChangeNumberItemsListener changeNumberItemsListener){
-        if(listItem.get(position).getNumberInCart()==1){
+
+    public void minusNumberItem(ArrayList<Items> listItem, int position, ChangeNumberItemsListener changeNumberItemsListener) {
+        if (listItem.get(position).getNumberInCart() == 1) {
             listItem.remove(position);
-        }else{
-            listItem.get(position).setNumberInCart(listItem.get(position).getNumberInCart()-1);
+        } else {
+            listItem.get(position).setNumberInCart(listItem.get(position).getNumberInCart() - 1);
         }
-        tinyDB.putListObject("CartList",listItem);
+        tinyDB.putListObject("CartList", listItem);
         changeNumberItemsListener.change();
     }
-    public  void plusNumberItem(ArrayList<Items> listItem,int position,ChangeNumberItemsListener changeNumberItemsListener){
-        listItem.get(position).setNumberInCart(listItem.get(position).getNumberInCart()+1);
-        tinyDB.putListObject("CartList",listItem);
+
+    public void plusNumberItem(ArrayList<Items> listItem, int position, ChangeNumberItemsListener changeNumberItemsListener) {
+        listItem.get(position).setNumberInCart(listItem.get(position).getNumberInCart() + 1);
+        tinyDB.putListObject("CartList", listItem);
         changeNumberItemsListener.change();
     }
-    public  void removeItem(ArrayList<Items> listItem,int position,ChangeNumberItemsListener changeNumberItemsListener){
+
+    public void removeItem(ArrayList<Items> listItem, int position, ChangeNumberItemsListener changeNumberItemsListener) {
         listItem.remove(position);
-        tinyDB.putListObject("CartList",listItem);
+        tinyDB.putListObject("CartList", listItem);
         changeNumberItemsListener.change();
+    }
+
+    // Method to clear the cart
+    public void clearCart() {
+        ArrayList<Items> emptyList = new ArrayList<>();
+        tinyDB.putListObject("CartList", emptyList);
+        Toast.makeText(context, "Cart Cleared", Toast.LENGTH_SHORT).show();
     }
 }

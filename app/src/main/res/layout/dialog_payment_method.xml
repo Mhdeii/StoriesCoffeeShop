@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/ocean_button_background"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Payment Method"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroupPayment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="16dp">
+
+        <RadioButton
+            android:id="@+id/radioButtonOnDelivery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="On Delivery" />
+
+        <RadioButton
+            android:id="@+id/radioButtonOMT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OMT" />
+
+        <RadioButton
+            android:id="@+id/radioButtonCreditCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Credit Card" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/buttonConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:background="@drawable/ocean_bg"
+        android:text="Confirm"
+        android:layout_marginTop="16dp" />
+</LinearLayout>

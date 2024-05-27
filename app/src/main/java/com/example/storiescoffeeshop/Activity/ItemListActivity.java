@@ -51,7 +51,7 @@ public class ItemListActivity extends BaseActivity {
                     }
                     if (list.size()>0){
                         binding.itemListView.setLayoutManager(new LinearLayoutManager(ItemListActivity.this,LinearLayoutManager.VERTICAL,false));
-                    binding.itemListView.setAdapter(new ItemListAdapter(list));
+                        binding.itemListView.setAdapter(new ItemListAdapter(list));
                     }
                     binding.progressBar.setVisibility(View.GONE);
                 }

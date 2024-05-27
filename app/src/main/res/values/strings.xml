@@ -29,4 +29,5 @@
     <string name="what_do_you_want_to_choose">What do you want to choose?</string>
     <string name="check_out">Check Out</string>
     <string name="mahdios_amp_hasandroid"><![CDATA[MahdiOs & HasanDroid]]></string>
+    <string name="cart_empty_icon_desc">cart_empty_icon_desc</string>
 </resources>

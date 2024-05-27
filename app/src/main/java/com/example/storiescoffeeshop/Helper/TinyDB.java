@@ -484,9 +484,9 @@ public class TinyDB {
      * @param obj is the Object you want to put
      */
     public void putObject(String key, Object obj){
-    	checkForNullKey(key);
-    	Gson gson = new Gson();
-    	putString(key, gson.toJson(obj));
+        checkForNullKey(key);
+        Gson gson = new Gson();
+        putString(key, gson.toJson(obj));
     }
 
     public void putListObject(String key, ArrayList<Items> playerList){

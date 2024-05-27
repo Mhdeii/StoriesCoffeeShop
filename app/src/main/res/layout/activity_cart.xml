@@ -7,91 +7,105 @@
     tools:context=".Activity.CartActivity"
     android:id="@+id/ConstraintLayout">
 
-    <ImageView
-        android:id="@+id/backBtn"
-        android:layout_width="41dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:scaleType="centerInside"
-        android:background="@drawable/ocean_button_background"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/arrowback" />
-
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/emptyCart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center">
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/emptyCartIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/infoempty"
+            android:contentDescription="@string/cart_empty_icon_desc"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/emptyCartText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Cart is Empty"
+            android:textSize="18sp"
+            android:textColor="@color/ocean_green"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/emptyCartSubText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please go to the home and choose what you want to drink"
+            android:textSize="16sp"
+            android:textColor="@color/ocean_green"/>
+
+    </LinearLayout>
+
+    <!-- ScrollView with Cart Items -->
+    <ScrollView
+        android:id="@+id/scrollView6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView10"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/cart"
-                android:textAlignment="center"
-                android:textColor="@color/ocean_green"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="16dp">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cart"
+                    android:textColor="@color/ocean_green"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/backBtn"
+                    android:layout_width="41dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/ocean_button_background"
+                    android:scaleType="centerInside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/arrowback" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/cartView"
-                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clipToPadding="false" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/editTextText2"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/ocean_button_background"
-                    android:ems="10"
-                    android:hint="@string/enter_your_code"
-                    android:inputType="text"
-                    android:textAlignment="center"
-                    android:textColor="@color/ocean_green"
-                    android:textColorHint="@color/ocean_green"
-                    android:textSize="14sp" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/button"
-                    style="@android:style/Widget.Button"
-                    android:layout_width="145dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/green_button_background"
-                    android:text="@string/apply_coupon"
-                    android:textColor="@color/white" />
-            </LinearLayout>
+                android:layout_height="match_parent" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/textView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/order_summary"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:text="Order Summary"
                 android:textColor="@color/ocean_green"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginTop="16dp"/>
+                android:textStyle="bold" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_margin="16dp"
                 android:background="@drawable/ocean_button_background">
 
                 <TextView
@@ -109,7 +123,7 @@
                     android:id="@+id/textView12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="24dp"
                     android:text="@string/delivery"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/textView11"
@@ -119,14 +133,14 @@
                     android:id="@+id/textView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="24dp"
                     android:text="@string/total_tax"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/textView12"
                     app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
                 <TextView
-                    android:id="@+id/textView15"
+                    android:id="@+id/totalFeeTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
@@ -136,31 +150,31 @@
                     app:layout_constraintTop_toTopOf="@+id/textView11" />
 
                 <TextView
-                    android:id="@+id/textView16"
+                    android:id="@+id/deliveryTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="24dp"
                     android:text="@string/dollar"
                     android:textColor="@color/black"
-                    app:layout_constraintEnd_toEndOf="@+id/textView15"
-                    app:layout_constraintTop_toBottomOf="@+id/textView15" />
+                    app:layout_constraintEnd_toEndOf="@+id/totalFeeTxt"
+                    app:layout_constraintTop_toBottomOf="@+id/totalFeeTxt" />
 
                 <TextView
-                    android:id="@+id/textView17"
+                    android:id="@+id/taxTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="24dp"
                     android:text="@string/dollar"
                     android:textColor="@color/black"
-                    app:layout_constraintEnd_toEndOf="@+id/textView16"
-                    app:layout_constraintTop_toBottomOf="@+id/textView16" />
+                    app:layout_constraintEnd_toEndOf="@+id/deliveryTxt"
+                    app:layout_constraintTop_toBottomOf="@+id/deliveryTxt" />
 
                 <View
                     android:id="@+id/view2"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="28dp"
                     android:layout_marginEnd="16dp"
                     android:background="#535252"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -172,38 +186,56 @@
                     style="@style/textStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/total"
-                    app:layout_constraintStart_toStartOf="@+id/textView13"
-                    app:layout_constraintTop_toBottomOf="@+id/view2" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view2"
+                    app:layout_constraintVertical_bias="0.401" />
 
                 <TextView
-                    android:id="@+id/textView19"
+                    android:id="@+id/totallTxt"
                     style="@style/textStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
                     android:text="@string/dollar"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView18" />
+                    app:layout_constraintTop_toBottomOf="@+id/view2"
+                    app:layout_constraintVertical_bias="0.428" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button2"
+                android:id="@+id/checkOutBtn"
                 style="@android:style/Widget.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/green_button_background"
-                android:text="@string/check_out"
+                android:layout_margin="16dp"
+                android:background="@drawable/ocean_bg"
+                android:text="Check Out"
                 android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textSize="18sp" />
         </LinearLayout>
     </ScrollView>
 
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:id="@+id/bottomNavbar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/dessert_sand"
+        android:padding="4dp"
+        app:cnb_iconSize="25dp"
+        app:cnb_menuResource="@menu/bottom_navbar"
+        app:cnb_orientationMode="horizontal"
+        app:cnb_radius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

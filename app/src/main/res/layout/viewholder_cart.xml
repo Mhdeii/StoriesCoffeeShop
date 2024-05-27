@@ -6,6 +6,7 @@
     android:layout_marginEnd="4dp"
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
+    android:background="@drawable/ocean_button_background"
     android:layout_height="110dp">
 
     <ImageView
@@ -13,7 +14,6 @@
         android:layout_width="123dp"
         android:layout_height="96dp"
         android:layout_marginStart="8dp"
-        android:src="@drawable/devs"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -61,6 +61,7 @@
             android:text="-"
             android:textColor="@color/dessert_sand"
             android:textStyle="bold"
+            android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -70,7 +71,9 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:gravity="center"
+            android:textStyle="bold"
             android:text="+"
+            android:textSize="20sp"
             android:textColor="@color/dessert_sand"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

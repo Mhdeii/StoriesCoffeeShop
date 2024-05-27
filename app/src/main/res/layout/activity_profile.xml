@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.ProfileActivity">
@@ -15,6 +16,7 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_marginTop="32dp"
+            android:background="@drawable/circle_shape"
             android:contentDescription="profile_picture"
             android:src="@drawable/profile"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,6 +49,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/captureButton" />
+
+        <com.ismaeldivita.chipnavigation.ChipNavigationBar
+            android:id="@+id/bottomNavbar"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@color/dessert_sand"
+            android:padding="4dp"
+            app:cnb_iconSize="25dp"
+            app:cnb_menuResource="@menu/bottom_navbar"
+            app:cnb_orientationMode="horizontal"
+            app:cnb_radius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

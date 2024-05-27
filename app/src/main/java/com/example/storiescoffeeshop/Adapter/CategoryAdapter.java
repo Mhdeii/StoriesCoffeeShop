@@ -38,10 +38,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.viewholder holder, int position) {
         holder.titleView.setText(items.get(position).getName());
-        String imageUrl = items.get(position).getImagePath(); // Assume this is the URL of the image
+
         Glide.with(context)
-                .load(imageUrl)
+                .load(items.get(position).getImagePath())
                 .into(holder.pic);
+
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, ItemListActivity.class);
             intent.putExtra("CategoryId", items.get(position).getId());

@@ -11,10 +11,12 @@ import android.os.Bundle;
 import android.provider.BaseColumns;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -23,6 +25,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.Cursor;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.storiescoffeeshop.R;
 
 import java.io.File;
@@ -30,7 +34,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends BaseActivity {
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_CAMERA_PERMISSION = 200;
@@ -45,11 +49,22 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
 
+        setContentView(R.layout.activity_profile); // Set your specific layout for ProfileActivity
+
+        // Initialize views
         profileImageView = findViewById(R.id.profileImageView);
         captureButton = findViewById(R.id.captureButton);
+        Button deleteButton = findViewById(R.id.deleteButton);
 
+        // Initialize bottomNavbar
+        bottomNavbar = findViewById(R.id.bottomNavbar);
+        if (bottomNavbar != null) {
+            bottomNavbar.setItemSelected(R.id.profile, true);
+            setupBottomNavigation();
+        }
+
+        // Setup button listeners
         captureButton.setOnClickListener(v -> {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                     != PackageManager.PERMISSION_GRANTED) {
@@ -59,20 +74,59 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        Button deleteButton = findViewById(R.id.deleteButton);
-        deleteButton.setOnClickListener(v -> deleteProfilePicture());
+        deleteButton.setOnClickListener(v -> showDeleteConfirmationDialog());
 
         // Initialize database
         ProfileDbHelper dbHelper = new ProfileDbHelper(this);
         database = dbHelper.getWritableDatabase();
 
-        // Load the profile picture from database
+        // Load the profile picture from the database
         loadProfilePicture();
+
     }
 
+    private void showDeleteConfirmationDialog() {
+        // Create the dialog builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // Inflate the custom layout
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_delete_confirmation, null);
+        builder.setView(dialogView);
+
+        // Get the dialog elements
+        Button btnNo = dialogView.findViewById(R.id.btn_no);
+        Button btnDelete = dialogView.findViewById(R.id.btn_delete);
+
+        // Create the AlertDialog
+        AlertDialog dialog = builder.create();
+
+        // Set click listeners
+        btnNo.setOnClickListener(v -> dialog.dismiss());
+
+        btnDelete.setOnClickListener(v -> {
+            // Delete the profile picture
+            deleteProfilePicture();
+            dialog.dismiss();
+        });
+
+        // Show the dialog
+        dialog.show();
+    }
+
+
     private void deleteProfilePicture() {
+        // Delete the profile picture from the database
         database.delete(ProfileContract.ProfileEntry.TABLE_NAME, null, null);
         profileImageView.setImageResource(R.drawable.profile); // or any placeholder image
+
+        // Remove the image path from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("ProfilePrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("profile_image_path");
+        editor.apply();
+
+        // Notify MainActivity about the deletion
+        Intent intent = new Intent("com.example.storiescoffeeshop.PROFILE_PICTURE_DELETED");
+        sendBroadcast(intent);
     }
 
     private void dispatchTakePictureIntent() {
@@ -98,7 +152,13 @@ public class ProfileActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             File imgFile = new File(currentPhotoPath);
             if (imgFile.exists()) {
-                profileImageView.setImageURI(Uri.fromFile(imgFile));
+                // Use Glide to load the image and apply circular transformation
+                Glide.with(this)
+                        .load(Uri.fromFile(imgFile))
+                        .apply(RequestOptions.circleCropTransform())
+                        .into(profileImageView);
+
+                // Save the profile picture path
                 saveProfilePicture(currentPhotoPath);
             }
         }
@@ -129,27 +189,44 @@ public class ProfileActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Load the profile picture when the activity resumes
+        loadProfilePicture();
+    }
+
 
     private void loadProfilePicture() {
-        String[] projection = {
-                ProfileContract.ProfileEntry.COLUMN_NAME_IMAGE_PATH
-        };
+        if (currentPhotoPath != null) {
+            // If there's a newly captured image, load and display it
+            profileImageView.setImageURI(Uri.fromFile(new File(currentPhotoPath)));
+        } else {
+            // Otherwise, load the image from the database
+            String[] projection = {
+                    ProfileContract.ProfileEntry.COLUMN_NAME_IMAGE_PATH
+            };
 
-        Cursor cursor = database.query(
-                ProfileContract.ProfileEntry.TABLE_NAME,
-                projection,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
+            Cursor cursor = database.query(
+                    ProfileContract.ProfileEntry.TABLE_NAME,
+                    projection,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+            );
 
-        if (cursor.moveToFirst()) {
-            String imagePath = cursor.getString(cursor.getColumnIndexOrThrow(ProfileContract.ProfileEntry.COLUMN_NAME_IMAGE_PATH));
-            profileImageView.setImageURI(Uri.fromFile(new File(imagePath)));
+            if (cursor.moveToFirst()) {
+                String imagePath = cursor.getString(cursor.getColumnIndexOrThrow(ProfileContract.ProfileEntry.COLUMN_NAME_IMAGE_PATH));
+                // Use Glide to load the image and apply circular transformation
+                Glide.with(this)
+                        .load(Uri.fromFile(new File(imagePath)))
+                        .apply(RequestOptions.circleCropTransform())
+                        .into(profileImageView);
+            }
+            cursor.close();
         }
-        cursor.close();
     }
 
     @Override
